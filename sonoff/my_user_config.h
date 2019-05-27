@@ -44,10 +44,10 @@
 \*********************************************************************************************/
 
 // -- Master parameter control --------------------
-#define CFG_HOLDER             1              // [Reset 1] Change this value (max 32000) to load SECTION1 configuration parameters to flash
+#define CFG_HOLDER             4617              // [Reset 1] Change this value (max 32000) to load SECTION1 configuration parameters to flash
 
 // -- Project -------------------------------------
-#define PROJECT                "casa-inteligente"          // PROJECT is used as the default topic delimiter
+#define PROJECT                "sonoff"          // PROJECT is used as the default topic delimiter
 
 // If not selected the default will be SONOFF_BASIC
 //#define MODULE                 SONOFF_BASIC      // [Module] Select default model from sonoff_template.h
@@ -115,7 +115,7 @@
                                                  //   May be named the same as PUB_PREFIX
 // %topic% token options (also ButtonTopic and SwitchTopic)
 #define MQTT_TOPIC             PROJECT           // [Topic] (unique) MQTT device topic, set to 'PROJECT "_%06X"' for unique topic including device MAC address
-#define MQTT_GRPTOPIC          "cit"         // [GroupTopic] MQTT Group topic
+#define MQTT_GRPTOPIC          "sonoffs"         // [GroupTopic] MQTT Group topic
 #define MQTT_BUTTON_TOPIC      "0"               // [ButtonTopic] MQTT button topic, "0" = same as MQTT_TOPIC, set to 'PROJECT "_BTN_%06X"' for unique topic including device MAC address
 #define MQTT_SWITCH_TOPIC      "0"               // [SwitchTopic] MQTT button topic, "0" = same as MQTT_TOPIC, set to 'PROJECT "_SW_%06X"' for unique topic including device MAC address
 #define MQTT_CLIENT_ID         "DVES_%06X"       // [MqttClient] Also fall back topic using Chip Id = last 6 characters of MAC address
@@ -133,7 +133,7 @@
 // -- HTTP ----------------------------------------
 #define WEB_SERVER             2                 // [WebServer] Web server (0 = Off, 1 = Start as User, 2 = Start as Admin)
 #define WEB_PASSWORD           ""                // [WebPassword] Web server Admin mode Password for WEB_USERNAME (empty string = Disable)
-#define FRIENDLY_NAME          "Casa Inteligente"          // [FriendlyName] Friendlyname up to 32 characters used by webpages and Alexa
+#define FRIENDLY_NAME          "Sonoff"          // [FriendlyName] Friendlyname up to 32 characters used by webpages and Alexa
 #define EMULATION              EMUL_NONE         // [Emulation] Select Belkin WeMo (single relay/light) or Hue Bridge emulation (multi relay/light) (EMUL_NONE, EMUL_WEMO or EMUL_HUE)
 
 // -- mDNS ----------------------------------------
@@ -284,7 +284,7 @@
 //  #define DS18B20_INTERNAL_PULLUP                // Use INPUT_PULLUP internal pullup resistors for single DS18B20
 
 // -- I2C sensors ---------------------------------
-//#define USE_I2C                                  // I2C using library wire (+10k code, 0k2 mem, 124 iram)
+#define USE_I2C                                  // I2C using library wire (+10k code, 0k2 mem, 124 iram)
 
 #ifdef USE_I2C
   #define USE_SHT                                // Enable SHT1X sensor (+1k4 code)
@@ -350,21 +350,21 @@
 #endif  // USE_SPI
 
 // -- Serial sensors ------------------------------
-//#define USE_MHZ19                                // Add support for MH-Z19 CO2 sensor (+2k code)
-//#define USE_SENSEAIR                             // Add support for SenseAir K30, K70 and S8 CO2 sensor (+2k3 code)
-//  #define CO2_LOW              800               // Below this CO2 value show green light (needs PWM or WS2812 RG(B) led and enable with SetOption18 1)
- // #define CO2_HIGH             1200              // Above this CO2 value show red light (needs PWM or WS2812 RG(B) led and enable with SetOption18 1)
-//#define USE_PMS5003                              // Add support for PMS5003 and PMS7003 particle concentration sensor (+1k3 code)
-//#define USE_NOVA_SDS                             // Add support for SDS011 and SDS021 particle concentration sensor (+0k7 code)
- // #define WORKING_PERIOD       5                 // Working period of the SDS Sensor, Takes a reading every X Minutes
-//#define USE_SERIAL_BRIDGE                        // Add support for software Serial Bridge (+0k8 code)
+#define USE_MHZ19                                // Add support for MH-Z19 CO2 sensor (+2k code)
+#define USE_SENSEAIR                             // Add support for SenseAir K30, K70 and S8 CO2 sensor (+2k3 code)
+  #define CO2_LOW              800               // Below this CO2 value show green light (needs PWM or WS2812 RG(B) led and enable with SetOption18 1)
+  #define CO2_HIGH             1200              // Above this CO2 value show red light (needs PWM or WS2812 RG(B) led and enable with SetOption18 1)
+#define USE_PMS5003                              // Add support for PMS5003 and PMS7003 particle concentration sensor (+1k3 code)
+#define USE_NOVA_SDS                             // Add support for SDS011 and SDS021 particle concentration sensor (+0k7 code)
+  #define WORKING_PERIOD       5                 // Working period of the SDS Sensor, Takes a reading every X Minutes
+#define USE_SERIAL_BRIDGE                        // Add support for software Serial Bridge (+0k8 code)
 //#define USE_SDM120                               // Add support for Eastron SDM120-Modbus energy meter (+1k7 code)
- // #define SDM120_SPEED         9600              // SDM120-Modbus RS485 serial speed (default: 2400 baud)
- // #define USE_SDM220                             // Add extra parameters for SDM220 (+0k1 code)
+  #define SDM120_SPEED         9600              // SDM120-Modbus RS485 serial speed (default: 2400 baud)
+  #define USE_SDM220                             // Add extra parameters for SDM220 (+0k1 code)
 //#define USE_SDM630                               // Add support for Eastron SDM630-Modbus energy meter (+2k code)
- // #define SDM630_SPEED         9600              // SDM630-Modbus RS485 serial speed (default: 9600 baud)
+  #define SDM630_SPEED         9600              // SDM630-Modbus RS485 serial speed (default: 9600 baud)
 //#define USE_MP3_PLAYER                           // Use of the DFPlayer Mini MP3 Player RB-DFR-562 commands: play, volume and stop
- // #define MP3_VOLUME           10                // Set the startup volume on init, the range can be 0..30(max)
+  #define MP3_VOLUME           10                // Set the startup volume on init, the range can be 0..30(max)
 #define USE_TUYA_DIMMER                          // Add support for Tuya Serial Dimmer
   #define TUYA_DIMMER_ID       0                 // Default dimmer Id
 #define USE_ARMTRONIX_DIMMERS                    // Add support for Armtronix Dimmers (+1k4 code)
@@ -391,13 +391,13 @@
     #define IR_RCV_TIMEOUT          15           // Number of milli-Seconds of no-more-data before we consider a message ended (default 15)
     #define IR_RCV_MIN_UNKNOWN_SIZE 6            // Set the smallest sized "UNKNOWN" message packets we actually care about (default 6)
 
-//#define USE_WS2812                               // WS2812 Led string using library NeoPixelBus (+5k code, +1k mem, 232 iram) - Disable by //
- // #define USE_WS2812_CTYPE     NEO_GRB           // WS2812 Color type (NEO_RGB, NEO_GRB, NEO_BRG, NEO_RBG, NEO_RGBW, NEO_GRBW)
+#define USE_WS2812                               // WS2812 Led string using library NeoPixelBus (+5k code, +1k mem, 232 iram) - Disable by //
+  #define USE_WS2812_CTYPE     NEO_GRB           // WS2812 Color type (NEO_RGB, NEO_GRB, NEO_BRG, NEO_RBG, NEO_RGBW, NEO_GRBW)
 //  #define USE_WS2812_DMA                         // DMA supports only GPIO03 (= Serial RXD) (+1k mem). When USE_WS2812_DMA is enabled expect Exceptions on Pow
 
 #define USE_ARILUX_RF                            // Add support for Arilux RF remote controller (+0k8 code, 252 iram (non 2.3.0))
 
-//#define USE_SR04                                 // Add support for HC-SR04 ultrasonic devices (+1k code)
+#define USE_SR04                                 // Add support for HC-SR04 ultrasonic devices (+1k code)
 
 //#define USE_TM1638                               // Add support for TM1638 switches copying Switch1 .. Switch8 (+1k code)
 #define USE_HX711                                // Add support for HX711 load cell (+1k5 code)

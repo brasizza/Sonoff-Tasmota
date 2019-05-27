@@ -22,9 +22,9 @@
 
 #define VERSION            0x06050000
 
-#define D_PROGRAMNAME      "Casa Inteligente"
+#define D_PROGRAMNAME      "Sonoff-Tasmota"
 #define D_AUTHOR           "Theo Arends"
 //#define D_WEBLINK          "https://github.com/arendst/Sonoff-Tasmota"
-#define D_WEBLINK          "http://casainteligente.online"
+#define D_WEBLINK          "https://bit.ly/tasmota"
 
 #endif  // _SONOFF_VERSION_H_
